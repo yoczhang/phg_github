@@ -26,7 +26,7 @@
 typedef SIMPLEX ELEMENT;
 typedef USE_MPI 1;
 #endif
-
+ 
 #include <string.h>
 #include <math.h>
 
