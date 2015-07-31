@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA  02110-1301  USA */
 
-
+//add thinkpad
 #include "phg.h"
 
 #if (PHG_VERSION_MAJOR <= 0 && PHG_VERSION_MINOR < 9)
