@@ -52,24 +52,30 @@ main(int argc, char *argv[])
 
     /*-----------------------------------------------------------------*/
     /*--------------- the following is my test ------------------------*/
+    int i=0;
     DOF *u,*a;
-    static DOF_TYPE type=DOF_P0;
+    static DOF_TYPE type;//=DOF_P0;
+    type.np_vert=0;
+    type.np_edge=0;
     type.np_face=1;
     type.np_elem=0;
     u=phgDofNew(g,DOF_P0,1,"u",DofNoAction);
     ELEMENT *e;
     MAP *mymap;
     printf("test-1----------\n");
-    a=phgDofNew(u->g,DOF_DEFAULT,1,"a",DofNoAction);
+    a=phgDofNew(u->g,&type,1,"a",DofNoAction);
     mymap=phgMapCreate(a,NULL);
     VEC *myvector;
     printf("test0------------\n");
     myvector=phgMapCreateVec(mymap,1);
     printf("test1-----------\n");
     ForAllElements(g,e){
-            
+        for(i=0;i<NFace;i++){
+            phgVecAddEntry(myvector,0,e->faces[i],0.1);
+        }
     }
-    phgVecAddEntry(myvector,1,1,0.1);
+    printf("test1.1-----------\n");
+    //phgVecAddEntry(myvector,0,0,0.1);
     printf("test2----------\n");
     phgVecAddEntry(myvector,0,1,0.2);
     phgVecAssemble(myvector);
